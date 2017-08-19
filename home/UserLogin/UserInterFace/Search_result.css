@@ -1,0 +1,75 @@
+body {
+  font-family: "Trebuchet MS",verdana,arial,helvetica,sans-serif;
+  background:#FFFFFF;
+  margin:0px;
+  padding:50px 100px;
+}
+
+.title {
+  font-size:20pt;
+  text-align:center;
+  color:blue;
+}
+
+.outerTable0,.outerTable1 {
+  margin:0px;
+  padding:0px;
+  width:100%;
+  border-style:solid;
+  border-color:#8B0000;
+  border-width:1px;
+  border-left:1px;
+  border-right:1px;
+}
+table.outerTable0 {
+  background-color:#DCDCDC;
+}
+table.outerTable1 {
+  background-color:#E6E6FA;
+}
+
+table{
+  table-layout: fixed;
+  width: 400px;
+  margin:100px;
+}
+
+td {
+    overflow: hidden;
+    width: 200px;
+}
+
+.innerTable {
+  margin:0px;
+  padding:0px;
+  width:100%;
+  /*text-align:center;*/
+}
+
+#Img {
+  margin:0px;
+  padding:0px;
+  height:200px;
+}
+
+img {
+  position:relative;
+  height:200px;
+}
+
+.tuple1 {
+  color:#8B0000;
+  font-weight:bold;
+}
+.tuple2 {
+  color:#228B22;
+}
+
+#borrowBook {
+  float:right;
+}
+input {
+  height:40px;
+  width:100px;
+  font-size:15pt;
+}
