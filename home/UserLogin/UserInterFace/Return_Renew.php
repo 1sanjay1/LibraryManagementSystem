@@ -13,6 +13,13 @@
   $status_query = "SELECT * FROM user_books WHERE user_id  = '$user_id' ";
   $query_set = mysqli_query($db, $status_query);
 
+  //fetch fine of deleted book if there is any
+  $deleted_fine_query  = "SELECT * FROM user WHERE id = '$user_id'";
+  $deleted_fine_query_result = mysqli_query($db, $deleted_fine_query);
+  $deleted_fine_row = mysqli_fetch_array($deleted_fine_query_result);
+  $deleted_fine = $deleted_fine_row['deleted_book_fine'];
+  $deleted_extra_days = $deleted_fine_row['deleted_extra_days'];
+
   $total_fine = 0;
   $total_days = 0;
 
@@ -27,9 +34,22 @@
       $fine_days   =  ceil($fine_date / (60 * 60 * 24));
       $total_days = $total_days + $fine_days;
       $total_fine = $total_fine + 2*$fine_days;
+
+      $book_fine = $fine_days * 2;
+      //update fine of each book
+      $accession = $row['ISBN_No'];
+      $update_each_book_fine_query = "UPDATE user_books SET book_fine='$book_fine' WHERE user_id = '$user_id' and ISBN_No = '$accession' ";
+      mysqli_query($db, $update_each_book_fine_query);
+
+      //update extra days of each book
+      $update_each_book_days_query = "UPDATE user_books SET extra_days = $fine_days WHERE user_id = '$user_id' and ISBN_No = '$accession' ";
+      mysqli_query($db, $update_each_book_days_query);
     }
   }
 
+  //add fine of deleted book to total fine
+  $total_fine = $total_fine + $deleted_fine;
+  $total_days = $total_days + $deleted_extra_days;
   //update fine of the user
   $status_query = "UPDATE user SET fine = '$total_fine' , ExtraDays = '$total_days' WHERE id  = '$user_id' ";
   mysqli_query($db, $status_query);
@@ -106,7 +126,7 @@
                         <col width="100">
                         <tr height="50">
                            <td  colspan="3" style="background-color:;">&nbsp;&nbsp;&nbsp; Fine Amount:</td><td colspan="1" style="background-color:;">&nbsp;&nbsp;&nbsp;<?php echo '₹ '.$total_fine;?></td>
-                           <td  colspan="2" style="background-color:;">&nbsp;&nbsp;&nbsp;Extra Days :</td><td colspan="1" style="background-color:;">&nbsp;&nbsp;&nbsp;<?php echo $total_days;?></td>
+                           <td  colspan="2" style="background-color:;">&nbsp;&nbsp;&nbsp;Extra Days :</td><td colspan="1" style="background-color:;">&nbsp;&nbsp;&nbsp;<?php echo $total_days.' days';?></td>
                         </tr>
 
                         <tr height="40" style="color:#FFFFFF;" >
