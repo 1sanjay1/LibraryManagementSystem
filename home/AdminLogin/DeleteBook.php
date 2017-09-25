@@ -1,19 +1,13 @@
 <?php
-  include("session.php");
 
-  $email = $_GET['Email'];
-  $pwd   = $_GET['Password'];
-  if(isset($email) && isset($pwd) )
-  {
-    if($email == 'sanjayucp1554@gmail.com' && $pwd == 'sanjay004'){
-           
-           $is_active = true;
-           $_SESSION['$is_active'] = $is_active; 
-    }     
-    else
-    {
-      die("Invalid Password or Email ID!");
-    }
+  session_start();
+
+  $email = $_SESSION['email'];
+  $pwd   = $_SESSION['pwd'];
+  $is_true = $_SESSION['admin']['is_active'];
+
+  if( !isset($_SESSION['admin']['is_active'])  ) {
+    header("location: /stark/home/home.php");
   }
 ?>
 
@@ -35,13 +29,13 @@
        }
        form {
          font-size:12pt;
-         color:#8B008B;   
-       } 
+         color:#8B008B;
+       }
     </style>
     <script type="text/javascript">
        function checkLength() {
             var elements = document.getElementsByClassName('textbox');
-            for(var i=0;i<2;i++) 
+            for(var i=0;i<2;i++)
             {
               if(elements[i].value.length != 0)
                 return true;
@@ -61,22 +55,19 @@
              <td>
                 <div id="RightTopBar"> <a href='logout.php'>logout</a></div>
              </td>
-          
+
          <tr height="300">
             <td colspan="2" valign="top" >
-               
+
                <div class="MiddleBar">
                   <table align="center" border="0" width="100%" cellpadding="0" cellspacing="10">
                      <tr>
-                        <td><div class="Inner_td"><a href="InsertBook.php?Email=<?php echo $email ?>&Password=<?php echo $pwd;?>
-                        ">Insert Book</a></div></td>
-                        <td><div class="Inner_td"><a href="DeleteBook.php?Email=<?php echo $email ?>&Password=<?php echo $pwd;?>
-                        ">Delete Book</a></div></td>
-                        <td><div class="Inner_td"><a href="DeleteUser.php?Email=<?php echo $email ?>&Password=<?php echo $pwd;?>
-                        ">Delete User</a></div></td>
+                        <td><div class="Inner_td"><a href="InsertBook.php">Insert Book</a></div></td>
+                        <td><div class="Inner_td"><a href="DeleteBook.php">Delete Book</a></div></td>
+                        <td><div class="Inner_td"><a href="DeleteUser.php">Delete User</a></div></td>
                      </tr>
                   </table>
-                   
+
                   <hr />
 
                   <form method="post" action="delete_book_from_database.php">
@@ -87,19 +78,19 @@
                         <tr>
                            <td>TITLE :</td><td><input class="textbox" name="TITLE" type="text" placeholder="CHARACTERS" maxlength="50" ></td>
                         </tr>
-                        <tr height="150px">                   
+                        <tr height="150px">
                            <td colspan="2"><button type="submit" class="button button-block" style="width:50%;margin:0px 200px;margin-bottom:5px;" onclick=" return checkLength();"/>DELETE</button></td>
                         </tr>
                      </table>
                   </form>
-                  
-                 
+
+
                </div>
 
             </td>
          </tr>
        </table>
-       
-    </div>      
+
+    </div>
  </body>
 </html>

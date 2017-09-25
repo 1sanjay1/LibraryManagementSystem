@@ -1,22 +1,15 @@
 <?php
-  
-  
-  include("connection.php");
-  $email = $_GET['Email'];
-  $pwd   = $_GET['Password'];
-  if(isset($email) && isset($pwd) )
-  {
-    if($email == 'sanjayucp1554@gmail.com' && $pwd == 'sanjay004'){
-           
-           $is_active = true;
-           $_SESSION['$is_active'] = $is_active; 
-      } 
-      
-    else
-    {
-      die("Invalid Password or Email ID!");
-    }
+
+  session_start();
+
+  $email = $_SESSION['email'];
+  $pwd   = $_SESSION['pwd'];
+  $is_active = $_SESSION['admin']['is_active'];
+
+  if( !isset($_SESSION['admin']['is_active'])  ) {
+    header("location: /stark/home/home.php");
   }
+
 ?>
 
 <!DOCTYPE html>
@@ -37,8 +30,8 @@
        }
        form {
          font-size:12pt;
-         color:#8B008B;   
-       } 
+         color:#8B008B;
+       }
        #submit {
          padding:5px;
          margin:5px;
@@ -71,23 +64,19 @@
              <td>
                 <div id="RightTopBar"> <a href='logout.php' >logout</a></div>
              </td>
-          
+
          <tr height="300">
             <td colspan="2" valign="top" >
-               
+
                <div class="MiddleBar">
                   <table align="center" border="0" width="100%" cellpadding="0" cellspacing="10">
                      <tr>
-                        <td><div class="Inner_td"><a href="InsertBook.php?Email=<?php echo $email ?>&Password=<?php echo $pwd;?>
-                        ">Insert Book</a></div></td>
-                        
-                        <td><div class="Inner_td"><a href="DeleteBook.php?Email=<?php echo $email ?>&Password=<?php echo $pwd;?>
-                        ">Delete Book</a></div></td>
-                        <td><div class="Inner_td"><a href="DeleteUser.php?Email=<?php echo $email ?>&Password=<?php echo $pwd;?>
-                        ">Delete User</a></div></td>
+                        <td><div class="Inner_td"><a href="InsertBook.php">Insert Book</a></div></td>
+                        <td><div class="Inner_td"><a href="DeleteBook.php">Delete Book</a></div></td>
+                        <td><div class="Inner_td"><a href="DeleteUser.php">Delete User</a></div></td>
                      </tr>
                   </table>
-                   
+
                   <hr />
 
                   <form method="post" action="add_book_into_database.php">
@@ -112,20 +101,20 @@
                            <td>Image Url :</td><td><input class="textbox" name="url" type="text" placeholder="image url" required/></td>
                            <td></td>
                         </tr>
-                        <tr>                   
+                        <tr>
                            <td colspan="2"height="80px"><button type="submit" class="button button-block"/>ADD</button></td>
                            <td colspan="2"height="80px"><button type="reset" class="button button-block"/>RESET</button></td>
                         </tr>
                      </table>
                   </form>
-                  
-                 
+
+
                </div>
 
             </td>
          </tr>
        </table>
-       
-    </div>      
+
+    </div>
  </body>
 </html>
