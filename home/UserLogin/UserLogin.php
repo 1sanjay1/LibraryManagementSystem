@@ -1,42 +1,3 @@
-<?php
-
-   include("connection.php");
-
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
-      // username and password sent from form
-
-      $Firstname  = mysqli_real_escape_string($db,$_POST['firstname']);
-      $lastname   = mysqli_real_escape_string($db,$_POST['lastname']);
-      $email      = mysqli_real_escape_string($db,$_POST['Email']);
-      $password   = mysqli_real_escape_string($db,$_POST['password']);
-
-      /*$confirm_password = mysqli_real_escape_string($db,$_POST['confirm_password']);*/
-
-
-      $sql = "INSERT INTO user (firstname, lastname, email,password) VALUES ( '$Firstname' , '$lastname' ,'$email' ,'$password')";
-
-      if ($db->query($sql) === TRUE) {
-
-
-    	         header("location: registration.php");
-      }
-
-     else{
-
-    		//echo "Error: " . $sql . "<br>" . $db->error;
-
-    		echo '<script style="text/javascript"> alert("Email ID or Password is Wrong!"); </script>';
-                echo "You are Already Registered";
-      }
-
-
-   }
-
-
-
-
-?>
-
 <!DOCTYPE html>
 <html >
   <head>
@@ -60,7 +21,7 @@
         <div id="signup">
           <h1>Sign Up</h1>
 
-          <form action="UserLogin.php" method="post">
+          <form action="registration.php" method="post">
 
           <div class="top-row">
             <div class="field-wrap">

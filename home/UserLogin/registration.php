@@ -1,49 +1,49 @@
-<!DOCTYPE html>
-<html>
- <head>
-  <style type="text/css">
-  body {
-   margin:0px;
-   padding:0px;
+<?php
+
+  include("connection.php");
+
+  $Firstname  = mysqli_real_escape_string($db,$_POST['firstname']);
+  $lastname   = mysqli_real_escape_string($db,$_POST['lastname']);
+  $email      = mysqli_real_escape_string($db,$_POST['Email']);
+  $password   = mysqli_real_escape_string($db,$_POST['password']);
+
+  $query = "SELECT * FROM user WHERE  email = '$email' ";
+
+  if( mysqli_num_rows(mysqli_query($db, $query)))
+  {
+    echo '
+      <h1 class="error" style="border: 1px solid black;
+          width: 800px;
+          margin: 40px auto;
+          background: #f4f4f4;
+          color: red;
+          padding: 100px;text-align: center;">You are already registered!
+
+          <p style="font-size: 20px;text-align: center;"><a href="UserLogin.php">Go to the signup page</a></p>
+       </h1>
+    ';
   }
- .button {
-  border: 0;
-  outline: none;
-  border-radius: 5px;
-  padding: 20px 0;
-  font-size: 3rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  background: #1ab188;
-  color: #ffffff;
- 
-}
-.button:hover, .button:focus {
-  background: #179b77;
-}
+  else {
 
-.button-block {
-  display: block;
-  width: 100%;
-}
+    $sql = "INSERT INTO user (firstname, lastname, email,password) VALUES ( '$Firstname' , '$lastname' ,'$email' ,'$password')";
 
-a {
-  text-decoration:none;
-  font-size:20pt;
-}
+    if ($db->query($sql) === TRUE) {
 
+      echo '
+        <h1 class="error" style="border: 1px solid black;
+            width: 800px;
+            margin: 40px auto;
+            background: #f4f4f4;
+            color: red;
+            padding: 100px;text-align: center;">New Registration has been completed Successfully!
 
-  </style>
- </head>
- <body>
-  <div class="ImageDiv">
-   <img src="Registered-042314.jpg" height="100%" width="100%"/>
-  </div>
-  <div class = "button">                   
-      <a href="/stark/home/home.php"> <button class="button button-block" style="width:50%;margin:0px 200px;margin-bottom:5px;" onclick=" return checkLength
-           ();"/>Back to Home Page!
-       </button></a>
-  </div>
- </body>
-</html>
+            <p style="font-size: 20px;text-align: center;"><a href="../home.php">Go to the Home page</a></p>
+         </h1>
+      ';
+
+    }
+  }
+
+  mysqli_close($db);
+
+?>
