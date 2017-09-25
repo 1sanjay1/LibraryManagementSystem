@@ -1,41 +1,13 @@
 <?php
-  include("session.php");
 
-  $email = $_GET['Email'];
-  $pwd   = $_GET['Password'];
-  @$popup = $_GET['popup'];
+  session_start();
 
-  if(isset($email) && isset($pwd) )
-  {
-    if($email == 'sanjayucp1554@gmail.com' && $pwd == 'sanjay004'){
-           
-           $is_active = true;
-           $_SESSION['$is_active'] = $is_active; 
-    }     
-    else
-    {
-      die("Invalid Password or Email ID!");
-    }
+  $is_true = $_SESSION['admin']['is_active'];
+
+  if( !isset($_SESSION['admin']['is_active'])  ) {
+    header("location: /stark/home/home.php");
   }
 
-  if($popup === 1) {
-
-    $firstName = $_POST['firstName'];
-    $emaiID = $_POST['emailID'];
-
-    $query = "UPDATE user SET fine = 0 WHERE firstname='$firstname' and email='$emailID' ";
-
-    if(mysqli_query($db, $query))
-
-    echo '
-
-          <script>
-          alert("Fine has been cleared successfully");
-          </script>
-
-    ';
-
-  }
 ?>
 
 <!DOCTYPE html>
@@ -56,13 +28,13 @@
        }
        form {
          font-size:12pt;
-         color:#8B008B;   
-       } 
+         color:#8B008B;
+       }
     </style>
     <script type="text/javascript">
        function checkLength() {
             var elements = document.getElementsByClassName('textbox');
-            for(var i=0;i<2;i++) 
+            for(var i=0;i<2;i++)
             {
               if(elements[i].value.length != 0)
                 return true;
@@ -82,47 +54,43 @@
              <td>
                 <div id="RightTopBar"> <a href='logout.php'>logout</a></div>
              </td>
-          
+
          <tr height="300">
             <td colspan="2" valign="top" >
-               
+
                <div class="MiddleBar">
                   <table align="center" border="0" width="100%" cellpadding="0" cellspacing="10">
                      <tr>
-                        <td><div class="Inner_td"><a href="InsertBook.php?Email=<?php echo $email ?>&Password=<?php echo $pwd;?>
-                        ">Insert Book</a></div></td>
-                        <td><div class="Inner_td"><a href="DeleteBook.php?Email=<?php echo $email ?>&Password=<?php echo $pwd;?>
-                        ">Delete Book</a></div></td>
-                        <td><div class="Inner_td"><a href="DeleteUser.php?Email=<?php echo $email ?>&Password=<?php echo $pwd;?>
-                        ">Delete User</a></div></td>
-                        <td><div class="Inner_td"><a href="DeleteFine.php?Email=<?php echo $email ?>&Password=<?php echo $pwd;?>
-                        ">Clear Fine</a></div></td>
+                        <td><div class="Inner_td"><a href="InsertBook.php">Insert Book</a></div></td>
+                        <td><div class="Inner_td"><a href="DeleteBook.php">Delete Book</a></div></td>
+                        <td><div class="Inner_td"><a href="DeleteUser.php">Delete User</a></div></td>
+                        <td><div class="Inner_td"><a href="DeleteFine.php">Clear Fine</a></div></td>
                      </tr>
                   </table>
-                   
+
                   <hr />
 
-                  <form method="post" action="DeleteFine.php?Email=sanjayucp1554@gmail.com&Password=sanjay004&popup=1">
+                  <form method="post" action="clear_fine_from_database.php">
                      <table align="center" cellpadding="5px" cellspacing="0px" border="0" style="width:100%;">
                         <tr>
                            <td>First Name :</td><td><input class="textbox" name="firstName" type="text" placeholder="Enter first name"  required/></td>
                         </tr>
                         <tr>
-                           <td>Email ID :</td><td><input class="email" name="emaiID" type="text" placeholder="email id" ></td>
+                           <td>Email ID :</td><td><input class="textbox" class="email" name="emaiID" type="text" placeholder="email id" ></td>
                         </tr>
-                        <tr height="150px">                   
+                        <tr height="150px">
                            <td colspan="2"><button type="submit" class="button button-block" style="width:50%;margin:0px 200px;margin-bottom:5px;" onclick=" return checkLength();"/>Clear Fine</button></td>
                         </tr>
                      </table>
                   </form>
-                  
-                 
+
+
                </div>
 
             </td>
          </tr>
        </table>
-       
-    </div>      
+
+    </div>
  </body>
 </html>

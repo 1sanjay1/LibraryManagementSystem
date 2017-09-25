@@ -65,6 +65,7 @@
                         <td><div class="Inner_td"><a href="InsertBook.php">Insert Book</a></div></td>
                         <td><div class="Inner_td"><a href="DeleteBook.php">Delete Book</a></div></td>
                         <td><div class="Inner_td"><a href="DeleteUser.php">Delete User</a></div></td>
+                        <td><div class="Inner_td"><a href="DeleteFine.php">Clear Fine</a></div></td>
                      </tr>
                   </table>
 
