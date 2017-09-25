@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Admin Login</title>
-    <link rel="icon" type="image/jpeg" href="Login.jpeg">
+    <link rel="icon" type="image/jpeg" href="../images/adminImg/Login.jpeg">
     <link rel="stylesheet" href="AdminLogin.css">
   </head>
 

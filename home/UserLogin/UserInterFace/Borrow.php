@@ -1,7 +1,8 @@
 <?php
   include("active.php");
+
   if(!$is_active){
-    header("location:/stark/home/UserLogin/UserLogin.php");
+    header("location: ../../home.php");
   }
 
   $i =  $_POST['id'];
@@ -67,7 +68,7 @@
               if ($db->query($insert_sql) === TRUE ) {
                 $insert_sql = "UPDATE user SET book_count = (book_count + 1) WHERE id = '$user_id'";
                 if($db->query($insert_sql) === TRUE){
-                    header("location: /stark/home/UserLogin/UserInterFace/user.php?email=".$email);
+                    header("location: user.php");
                 }
               }
               else{

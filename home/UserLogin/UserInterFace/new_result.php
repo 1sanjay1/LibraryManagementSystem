@@ -3,7 +3,7 @@
     include("active.php");
 
     if(!$is_active){
-      header("location:/stark/home/UserLogin/UserLogin.php");
+      header("location: ../../home.php");
     }
 
 // fatch credentials from sessession varialbes
@@ -46,13 +46,6 @@
               <html>
                 <head>
                   <link rel="stylesheet" type="text/css" href="Search_result.css"/>
-                  <script type="text/javascript">
-                    function add()
-                    {
-
-                      //alert('You have borrowed successfully!');
-                    }
-                  </script>
                 </head>
                 <body>
                   <?php

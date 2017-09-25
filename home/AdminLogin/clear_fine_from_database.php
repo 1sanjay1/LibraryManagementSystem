@@ -1,14 +1,6 @@
 <?php
 
-  session_start();
-
-  include('connection.php');
-
-  $is_true = $_SESSION['admin']['is_active'];
-
-  if( !isset($_SESSION['admin']['is_active'])  ) {
-    header("location: /stark/home/home.php");
-  }
+  include('../Connection/connection.php');
 
   $firstName = $_POST['firstName'];
   $email = $_POST['emaiID'];

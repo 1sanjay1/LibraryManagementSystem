@@ -5,7 +5,7 @@
   $is_true = $_SESSION['admin']['is_active'];
 
   if( !isset($_SESSION['admin']['is_active'])  ) {
-    header("location: /stark/home/home.php");
+    header("location: ../home.php");
   }
 
 ?>

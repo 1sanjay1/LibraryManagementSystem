@@ -2,12 +2,10 @@
 
   session_start();
 
-  $email = $_SESSION['email'];
-  $pwd   = $_SESSION['pwd'];
   $is_active = $_SESSION['admin']['is_active'];
 
   if( !isset($_SESSION['admin']['is_active'])  ) {
-    header("location: /stark/home/home.php");
+    header("location: ../home.php");
   }
 
 ?>

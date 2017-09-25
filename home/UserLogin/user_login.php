@@ -1,7 +1,8 @@
 <?php
 
-   include("connection.php");
    session_start();
+
+   include("../Connection/connection.php");
 
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form second
@@ -20,7 +21,7 @@
 
       // If result matched $myusername and $mypassword, table row must be 1 row
 
-      if($count == 1) {
+      if($count >= 1) {
 
          $_SESSION['$email'] = $email;
          $_SESSION['$password'] = $password;
@@ -29,8 +30,8 @@
          $active = True;
          $_SESSION['$is_active'] = $active;
 
-        //  header("location: /stark/home/UserLogin/UserInterFace/user.php?email=".$email);
-         header("location: /stark/home/UserLogin/UserInterFace/user.php");
+        //  header("location:home/UserLogin/UserInterFace/user.php?email=".$email);
+         header("location: UserInterFace/user.php");
       }else {
 
          //$error = "Your Login Name or Password is invalid";

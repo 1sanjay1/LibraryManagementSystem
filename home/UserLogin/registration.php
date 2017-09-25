@@ -1,6 +1,6 @@
 <?php
 
-  include("connection.php");
+  include("../Connection/connection.php");
 
   $Firstname  = mysqli_real_escape_string($db,$_POST['firstname']);
   $lastname   = mysqli_real_escape_string($db,$_POST['lastname']);

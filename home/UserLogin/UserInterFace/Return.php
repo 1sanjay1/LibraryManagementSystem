@@ -3,7 +3,7 @@
   include("active.php");
 
   if(!$is_active){
-    header("location:/stark/home/UserLogin/UserLogin.php");
+    header("location: ../../home.php");
   }
 
   $ISBN_No =  $_POST['id'];
@@ -42,7 +42,7 @@
       $count_sql = "UPDATE user SET Book_count = '$book_count' WHERE id = '$user_id'";
 
       if($db->query($count_sql) === TRUE){
-           header("location: /stark/home/UserLogin/UserInterFace/Return_Renew.php");
+           header("location: Return_Renew.php");
       }
 
   }

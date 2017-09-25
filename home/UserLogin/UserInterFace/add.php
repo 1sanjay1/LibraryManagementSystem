@@ -1,20 +1,15 @@
 <?php
-  
-  include("active.php");  
+
+  include("active.php");
+
   if(!$is_active){
-     
-      header("location:/stark/home/UserLogin/UserLogin.php");
-
+      header("location: ../../home.php");
   }
-
-?>
-<?php
-
 
   $user_id = $_SESSION['$user_id'];
   $_SESSION['$user_id'] = $user_id;
- 
- 
+
+
   @$FIRST_NAME     = $_POST['first_name'];
   @$LAST_NAME      = $_POST['last_name'];
   @$FATHER_NAME    = $_POST['father_name'];
@@ -23,7 +18,7 @@
   @$EMAIL          = $_POST['email_id'];
   @$DOB            = $_POST['dob'];
   @$MOB            = $_POST['mobile_no'];
-   
+
   if(strlen($FIRST_NAME)!=0) {
     $q = "UPDATE user SET firstname= '$FIRST_NAME' WHERE id = '$user_id' ";
     mysqli_query($db,$q);
@@ -55,7 +50,9 @@
   if(strlen($MOB)!=0) {
     $q = "UPDATE user SET Mobile_No = '$MOB' WHERE id = '$user_id' ";
     mysqli_query($db,$q);
-  } 
-  echo 'Update is Completed successfully';
-  mysqli_close($db); 
+  }
+
+  mysqli_close($db);
+
+  header('location: user.php');
 ?>

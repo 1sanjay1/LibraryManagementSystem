@@ -3,17 +3,11 @@
   include("active.php");
 
   if(!$is_active){
-    header("location:/stark/home/UserLogin/UserLogin.php");
+    header("location: ../../home.php");
   }
 
   $user_id = $_SESSION['$user_id'];
   $email   = $_SESSION['$email'];
-
-  // $_SESSION['$user_id'] = $user_id;
-
-  // if($_GET){
-  //     $email =  $_GET['email'];
-  // }
 
   $query   =  "SELECT * FROM user WHERE id = '$user_id'";
   $result  =  mysqli_query($db,$query);

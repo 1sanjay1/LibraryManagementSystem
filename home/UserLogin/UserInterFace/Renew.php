@@ -3,7 +3,7 @@
   include("active.php");
 
   if(!$is_active){
-    header("location:/stark/home/UserLogin/UserLogin.php");
+    header("location: ../../home.php");
   }
 
   $isbn = $_POST['id'];
@@ -39,7 +39,7 @@
 
    if ($db->query($insert_sql) === TRUE) {
     //echo "Record updated successfully";
-    header("location: /stark/home/UserLogin/UserInterFace/Return_Renew.php");
+    header("location: Return_Renew.php");
    }
 
   }
